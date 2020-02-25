@@ -19,15 +19,13 @@ defmodule Pathfinder.Handler.Lookup do
 
   @spec handle_function_(:woody.func, :woody.args, :woody_context.ctx, :woody.options) ::
     {:ok, :woody.result} | no_return
-  def handle_function_(:Lookup, [request], _context, _opts) do
-    pf_LookupRequest(ids: target_ids, namespaces: target_namespaces) = request
+  def handle_function_(:Lookup, [pf_LookupRequest(ids: target_ids, namespaces: target_namespaces)], _context, _opts) do
     namespaces = get_namespaces(target_namespaces)
+    _ = :logger.info("Received request for Lookup. IDs: #{inspect target_ids}, Namespaces: #{inspect namespaces}")
 
-    :logger.info("Received request for Lookup. IDs: #{inspect target_ids}, Namespaces: #{inspect namespaces}")
+    lookup_result = do_lookup(target_ids, namespaces)
 
-    lookup_result = pf_LookupResult(data: do_lookup(target_ids, namespaces))
-
-    {:ok, lookup_result}
+    {:ok, pf_LookupResult(data: lookup_result)}
   end
 
   @type lookup_result :: [{Pathfinder.namespace, [Thrift.Header.t]}]

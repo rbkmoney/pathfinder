@@ -3,7 +3,7 @@ cat <<EOF
 FROM $BASE_IMAGE
 MAINTAINER Alexey Shaporin <a.shaporin@rbk.money>
 COPY ./_build/prod/rel/pathfinder /opt/pathfinder
-WORKDIR /opt/hellgate
+WORKDIR /opt/pathfinder
 CMD /opt/pathfinder/bin/pathfinder start
 EXPOSE 8022
 LABEL com.rbkmoney.$SERVICE_NAME.parent=$BASE_IMAGE_NAME \
