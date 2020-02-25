@@ -39,16 +39,20 @@ mix-hex:
 mix-rebar:
 	$(MIX) local.rebar --force
 
-mix-deps: mix-hex mix-rebar
+mix-support:
+	mix-hex
+	mix-rebar
+
+mix-deps: mix-support
 	$(MIX) do deps.get, deps.compile
 
 compile: submodules mix-deps
 	$(MIX) compile
 
-start: submodules
+start: submodules mix-support
 	$(MIX) run
 
-release: submodules distclean
+release: submodules distclean mix-support
 	MIX_ENV=prod $(MIX) release
 
 clean:
@@ -58,8 +62,8 @@ distclean:
 	$(MIX) clean -a
 	rm -rf _build
 
-test: submodules
+test: submodules mix-support
 	$(MIX) do ecto.migrate, test
 
-dialyze: submodules
+dialyze: submodules mix-support
 	$(MIX) dialyzer
