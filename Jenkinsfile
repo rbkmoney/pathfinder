@@ -20,26 +20,39 @@ build('pathfinder', 'docker-host', finalHook) {
   }
 
   pipeDefault() {
+
+    runStage('get deps') {
+      withGithubPrivkey {
+        sh 'make wc_mix_deps'
+      }
+    }
+
     if (env.BRANCH_NAME != 'master') {
+
       runStage('compile') {
         withGithubPrivkey {
           sh 'make wc_compile'
         }
       }
+
       runStage('dialyze') {
         withWsCache("_build/dev/dialyxir_erlang-22.2.6_elixir-1.10.0_deps-dev.plt") {
           sh 'make wc_dialyze'
         }
       }
+
       runStage('test') {
         sh "make wdeps_test"
       }
+
     }
+
     runStage('make release') {
       withGithubPrivkey {
         sh "make wc_release"
       }
     }
+
     runStage('build image') {
       sh "make build_image"
     }

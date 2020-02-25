@@ -22,7 +22,6 @@ defprotocol Pathfinder.Protocol.Thrift do
 end
 
 defimpl Pathfinder.Protocol.Thrift, for: NaiveDateTime do
-
   @spec encode(%NaiveDateTime{}) :: binary
   def encode(naive_dt) do
     NaiveDateTime.to_string(naive_dt)
@@ -30,14 +29,12 @@ defimpl Pathfinder.Protocol.Thrift, for: NaiveDateTime do
 end
 
 defimpl Pathfinder.Protocol.Thrift, for: Atom do
-
   @spec encode(atom) :: atom
   def encode(nil), do: :undefined
   def encode(atom), do: atom
 end
 
 defimpl Pathfinder.Protocol.Thrift, for: Any do
-
   @spec encode(any) :: any
   def encode(any), do: any
 end

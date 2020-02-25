@@ -33,18 +33,18 @@ $(SUBTARGETS): %/.git: %
 
 submodules: $(SUBTARGETS)
 
-mix-hex:
+mix_hex:
 	$(MIX) local.hex --force
 
-mix-rebar:
+mix_rebar:
 	$(MIX) local.rebar rebar3 $(shell which rebar3) --force
 
-mix-support: mix-hex mix-rebar
+mix_support: mix_hex mix_rebar
 
-mix-deps: mix-support
+mix_deps: mix_support
 	$(MIX) do deps.get, deps.compile
 
-compile: submodules mix-deps
+compile: submodules mix_deps
 	$(MIX) compile
 
 start: submodules
@@ -61,7 +61,7 @@ distclean:
 	rm -rf _build
 
 test: submodules
-	$(MIX) do ecto.migrate, test
+	MIX_ENV=test $(MIX) do ecto.migrate, test
 
 dialyze: submodules
 	$(MIX) dialyzer
