@@ -27,7 +27,9 @@ build('pathfinder', 'docker-host', finalHook) {
         }
       }
       runStage('dialyze') {
-        sh 'make wc_dialyze'
+        withWsCache("_build/dev/dialyxir_erlang-22.2.6_elixir-1.10.0_deps-dev.plt") {
+          sh 'make wc_dialyze'
+        }
       }
       runStage('test') {
         sh "make wdeps_test"

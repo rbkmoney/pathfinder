@@ -20,6 +20,8 @@ BUILD_IMAGE_TAG := 4f0eb2312d1fcf9c6df23cfe440a6913d819845d
 
 CALL_W_CONTAINER := all submodules compile test start release clean distclean dialyze
 
+DOCKER_RUN_OPTS = -v $$HOME/.mix:/home/$(UNAME)/.mix:rw
+
 .PHONY: $(CALL_W_CONTAINER)
 
 all: compile
@@ -47,10 +49,10 @@ mix-deps: mix-support
 compile: submodules mix-deps
 	$(MIX) compile
 
-start: submodules mix-support
+start: submodules
 	$(MIX) run
 
-release: submodules distclean mix-support
+release: submodules distclean
 	MIX_ENV=prod $(MIX) release
 
 clean:
@@ -60,8 +62,8 @@ distclean:
 	$(MIX) clean -a
 	rm -rf _build
 
-test: submodules mix-support
+test: submodules
 	$(MIX) do ecto.migrate, test
 
-dialyze: submodules mix-support
+dialyze: submodules
 	$(MIX) dialyzer
