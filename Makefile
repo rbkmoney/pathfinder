@@ -44,7 +44,7 @@ mix_support: mix_hex mix_rebar
 mix_deps: mix_support
 	$(MIX) do deps.get, deps.compile
 
-compile: submodules mix_deps
+compile: submodules
 	$(MIX) compile
 
 start: submodules
