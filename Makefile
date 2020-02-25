@@ -33,7 +33,13 @@ $(SUBTARGETS): %/.git: %
 
 submodules: $(SUBTARGETS)
 
-mix-deps:
+mix-hex:
+	$(MIX) local.hex --force
+
+mix-rebar:
+	$(MIX) local.rebar --force
+
+mix-deps: mix-hex mix-rebar
 	$(MIX) do deps.get, deps.compile
 
 compile: submodules mix-deps
