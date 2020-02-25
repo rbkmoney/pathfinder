@@ -39,9 +39,7 @@ mix-hex:
 mix-rebar:
 	$(MIX) local.rebar --force
 
-mix-support:
-	mix-hex
-	mix-rebar
+mix-support: mix-hex mix-rebar
 
 mix-deps: mix-support
 	$(MIX) do deps.get, deps.compile
