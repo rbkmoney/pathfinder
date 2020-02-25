@@ -1,4 +1,4 @@
-MIX := $(shell which mix 2>/dev/null || which ./mix)
+MIX := MIX_HOME=$(shell pwd)/.mix $(shell which mix 2>/dev/null || which ./mix)
 SUBMODULES = build_utils
 SUBTARGETS = $(patsubst %,%/.git,$(SUBMODULES))
 
@@ -20,8 +20,6 @@ BUILD_IMAGE_TAG := 4f0eb2312d1fcf9c6df23cfe440a6913d819845d
 
 CALL_W_CONTAINER := all submodules compile test start release clean distclean dialyze
 
-DOCKER_RUN_OPTS = -v $$HOME/.mix:/home/$(UNAME)/.mix:rw
-
 .PHONY: $(CALL_W_CONTAINER)
 
 all: compile
@@ -39,7 +37,7 @@ mix-hex:
 	$(MIX) local.hex --force
 
 mix-rebar:
-	$(MIX) local.rebar --force
+	$(MIX) local.rebar rebar3 $(shell which rebar3) --force
 
 mix-support: mix-hex mix-rebar
 

@@ -26,3 +26,5 @@ pathfinder-*.tar
 docker-compose.yml
 
 .elixir_ls
+
+.mix
