@@ -18,7 +18,7 @@ BASE_IMAGE_TAG := da0ab769f01b650b389d18fc85e7418e727cbe96
 
 BUILD_IMAGE_TAG := 4f0eb2312d1fcf9c6df23cfe440a6913d819845d
 
-CALL_W_CONTAINER := all submodules compile test start release clean distclean dialyze
+CALL_W_CONTAINER := all submodules mix_deps compile test start release clean distclean dialyze
 
 .PHONY: $(CALL_W_CONTAINER)
 
