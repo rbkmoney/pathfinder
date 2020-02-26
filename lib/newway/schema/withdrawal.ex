@@ -21,8 +21,8 @@ defmodule NewWay.Schema.Withdrawal do
 
   schema "withdrawal" do
     field(:event_id,                              :integer)
-    field(:event_created_at,                      :naive_datetime)
-    field(:event_occured_at,                      :naive_datetime)
+    field(:event_created_at,                      :utc_datetime)
+    field(:event_occured_at,                      :utc_datetime)
     field(:sequence_id,                           :integer)
     field(:wallet_id,                             :string)
     field(:destination_id,                        :string)
@@ -32,7 +32,7 @@ defmodule NewWay.Schema.Withdrawal do
     field(:currency_code,                         :string)
     field(:withdrawal_status,                     WithdrawalStatus)
     field(:withdrawal_transfer_status,            WithdrawalTransferStatus)
-    field(:wtime,                                 :naive_datetime)
+    field(:wtime,                                 :utc_datetime)
     field(:current,                               :boolean)
     field(:fee,                                   :integer)
     field(:provider_fee,                          :integer)

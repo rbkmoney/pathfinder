@@ -18,8 +18,8 @@ defmodule NewWay.Schema.Destination do
 
   schema "destination" do
     field(:event_id,                          :integer)
-    field(:event_created_at,                  :naive_datetime)
-    field(:event_occured_at,                  :naive_datetime)
+    field(:event_created_at,                  :utc_datetime)
+    field(:event_occured_at,                  :utc_datetime)
     field(:sequence_id,                       :integer)
     field(:destination_id,                    :string)
     field(:destination_name,                  :string)
@@ -33,10 +33,10 @@ defmodule NewWay.Schema.Destination do
     field(:party_id,                          :string)
     field(:accounter_account_id,              :integer)
     field(:currency_code,                     :string)
-    field(:wtime,                             :naive_datetime)
+    field(:wtime,                             :utc_datetime)
     field(:current,                           :boolean)
     field(:external_id,                       :string)
-    field(:created_at,                        :naive_datetime)
+    field(:created_at,                        :utc_datetime)
     field(:context_json,                      :string)
     field(:resource_crypto_wallet_id,         :string)
     field(:resource_crypto_wallet_type,       :string)

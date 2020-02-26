@@ -36,7 +36,7 @@ defmodule Pathfinder.Handler.Lookup do
       |> Enum.reduce([], fn(namespace, acc) ->
            case lookup_schema(ids, namespace) do
              [] -> acc
-             results -> [{namespace, to_thift(results)} | acc]
+             results -> [{namespace, to_thrift(results)} | acc]
            end
          end)
       |> Enum.reverse
@@ -58,7 +58,7 @@ defmodule Pathfinder.Handler.Lookup do
   defp get_namespaces(:undefined),
     do: [:adjustments, :destinations, :invoices, :payments, :payouts, :refunds, :wallets, :withdrawals]
 
-  @spec to_thift([struct]) :: [Thrift.Header.t]
-  defp to_thift(list) when is_list(list),
+  @spec to_thrift([struct]) :: [Thrift.Header.t]
+  defp to_thrift(list) when is_list(list),
     do: list |> Enum.map(&Pathfinder.Protocol.Thrift.encode/1)
 end

@@ -21,10 +21,10 @@ defprotocol Pathfinder.Protocol.Thrift do
   def encode(data)
 end
 
-defimpl Pathfinder.Protocol.Thrift, for: NaiveDateTime do
-  @spec encode(%NaiveDateTime{}) :: binary
-  def encode(naive_dt) do
-    NaiveDateTime.to_string(naive_dt)
+defimpl Pathfinder.Protocol.Thrift, for: DateTime do
+  @spec encode(%DateTime{}) :: binary
+  def encode(dt) do
+    DateTime.to_iso8601(dt)
   end
 end
 

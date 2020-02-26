@@ -8,15 +8,15 @@ defmodule NewWay.Schema.Wallet do
 
   schema "wallet" do
     field(:event_id,             :integer)
-    field(:event_created_at,     :naive_datetime)
-    field(:event_occured_at,     :naive_datetime)
+    field(:event_created_at,     :utc_datetime)
+    field(:event_occured_at,     :utc_datetime)
     field(:sequence_id,          :integer)
     field(:wallet_id,            :string)
     field(:wallet_name,          :string)
     field(:identity_id,          :string)
     field(:party_id,             :string)
     field(:currency_code,        :string)
-    field(:wtime,                :naive_datetime)
+    field(:wtime,                :utc_datetime)
     field(:current,              :boolean)
     field(:account_id,           :string)
     field(:accounter_account_id, :integer)

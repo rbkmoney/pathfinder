@@ -14,7 +14,7 @@ defmodule NewWay.Macro.EnumType do
     end
   end
 
-  @spec cast(binary  | atom, [atom]) :: {:ok, atom} | :error
+  @spec cast(binary | atom, [atom]) :: {:ok, atom} | :error
   def cast(string, allowed_values) when is_binary(string) do
     encode(string, allowed_values)
   end
