@@ -10,7 +10,7 @@ defmodule NewWay.Schema.Refund do
     :failed
   ])
 
-  lookup_key(refund_id)
+  lookup_key(:refund_id)
 
   schema "refund" do
     field(:event_created_at,                                 :naive_datetime)

@@ -38,7 +38,7 @@ defmodule NewWay.Schema.Payment do
     :fatal
   ])
 
-  lookup_key(payment_id)
+  lookup_key(:payment_id)
 
   schema "payment" do
     field(:event_created_at,                                 :naive_datetime)

@@ -33,7 +33,7 @@ defmodule NewWay.Schema.Payout do
     :international_payout_account
   ])
 
-  lookup_key(payout_id)
+  lookup_key(:payout_id)
 
   schema "payout" do
     field(:event_id,                                                   :integer)

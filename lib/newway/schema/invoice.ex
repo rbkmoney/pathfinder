@@ -11,7 +11,7 @@ defmodule NewWay.Schema.Invoice do
     :fulfilled
   ])
 
-  lookup_key(invoice_id)
+  lookup_key(:invoice_id)
 
   schema "invoice" do
     field(:event_created_at,         :naive_datetime)

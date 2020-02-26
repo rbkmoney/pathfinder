@@ -11,7 +11,7 @@ defmodule NewWay.Schema.Adjustment do
     :processed
   ])
 
-  lookup_key(adjustment_id)
+  lookup_key(:adjustment_id)
 
   schema "adjustment" do
     field(:event_created_at,    :naive_datetime)

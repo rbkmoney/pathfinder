@@ -4,7 +4,7 @@ defmodule NewWay.Schema.Wallet do
 
   import NewWay.Macro.LookupKey
 
-  lookup_key(wallet_id)
+  lookup_key(:wallet_id)
 
   schema "wallet" do
     field(:event_id,             :integer)

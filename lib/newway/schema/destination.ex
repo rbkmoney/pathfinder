@@ -14,7 +14,7 @@ defmodule NewWay.Schema.Destination do
     :crypto_wallet
   ])
 
-  lookup_key(destination_id)
+  lookup_key(:destination_id)
 
   schema "destination" do
     field(:event_id,                          :integer)

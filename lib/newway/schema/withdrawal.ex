@@ -17,7 +17,7 @@ defmodule NewWay.Schema.Withdrawal do
     :cancelled
   ])
 
-  lookup_key(withdrawal_id)
+  lookup_key(:withdrawal_id)
 
   schema "withdrawal" do
     field(:event_id,                              :integer)
