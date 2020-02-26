@@ -17,13 +17,17 @@ config :pathfinder, :logger, [
     :config => %{
         :type => {:file, 'console.json'}
     },
-    :formatter => {:logger_logstash_formatter, %{}}
+    :formatter => {:logger_logstash_formatter, %{
+      :exclude_meta_fields => [:ansi_color, :application, :file, :line, :mfa, :pid, :gl, :domain]
+    }}
   }},
   {:handler, Logger, :logger_std_h, %{
     :config => %{
         :type => {:file, 'console.json'}
     },
-    :formatter => {:logger_logstash_formatter, %{}}
+    :formatter => {:logger_logstash_formatter, %{
+      :exclude_meta_fields => [:ansi_color, :application, :file, :line, :mfa, :pid, :gl, :domain]
+    }}
   }}
 ]
 
