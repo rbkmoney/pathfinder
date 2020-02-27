@@ -5,8 +5,8 @@ defmodule NewWay.Helper.SearchIn do
       def search(ids) do
         require Ecto.Query
         __MODULE__
-          |> Ecto.Query.where([a], a.unquote(opts[:field]) in ^ids)
-          |> NewWay.Repo.all()
+        |> Ecto.Query.where([a], a.unquote(opts[:field]) in ^ids)
+        |> NewWay.Repo.all()
       end
     end
   end

@@ -33,13 +33,13 @@ defmodule Pathfinder.Handler.Lookup do
   @spec do_lookup([Pathfinder.id], [Pathfinder.namespace]) :: lookup_result
   defp do_lookup(ids, namespaces) do
     namespaces
-      |> Enum.reduce([], fn(namespace, acc) ->
-           case lookup_schema(ids, namespace) do
-             [] -> acc
-             results -> [{namespace, to_thrift(results)} | acc]
-           end
-         end)
-      |> Enum.reverse
+    |> Enum.reduce([], fn(namespace, acc) ->
+          case lookup_schema(ids, namespace) do
+            [] -> acc
+            results -> [{namespace, to_thrift(results)} | acc]
+          end
+        end)
+    |> Enum.reverse
   end
 
   @spec lookup_schema([Pathfinder.id], Pathfinder.namespace) :: [struct]
