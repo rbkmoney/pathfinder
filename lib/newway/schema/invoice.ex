@@ -1,18 +1,16 @@
 defmodule NewWay.Schema.Invoice do
   use Ecto.Schema
-  @schema_prefix "nw"
+  use NewWay.Helper.SearchIn, field: :invoice_id
+  require NewWay.Macro.EnumType, as: EnumType
 
-  import NewWay.Macro.{EnumType, LookupKey}
-
-  defenum(InvoiceStatus, [
+  EnumType.def_enum(InvoiceStatus, [
     :unpaid,
     :paid,
     :cancelled,
     :fulfilled
   ])
 
-  lookup_key(:invoice_id)
-
+  @schema_prefix "nw"
   schema "invoice" do
     field(:event_created_at,         :utc_datetime)
     field(:invoice_id,               :string)

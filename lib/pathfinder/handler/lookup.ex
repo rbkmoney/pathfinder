@@ -43,14 +43,14 @@ defmodule Pathfinder.Handler.Lookup do
   end
 
   @spec lookup_schema([Pathfinder.id], Pathfinder.namespace) :: [struct]
-  defp lookup_schema(ids, :adjustments),  do: NewWay.Schema.Adjustment.by_adjustment_id(ids)
-  defp lookup_schema(ids, :destinations), do: NewWay.Schema.Destination.by_destination_id(ids)
-  defp lookup_schema(ids, :invoices),     do: NewWay.Schema.Invoice.by_invoice_id(ids)
-  defp lookup_schema(ids, :payments),     do: NewWay.Schema.Payment.by_payment_id(ids)
-  defp lookup_schema(ids, :payouts),      do: NewWay.Schema.Payout.by_payout_id(ids)
-  defp lookup_schema(ids, :refunds),      do: NewWay.Schema.Refund.by_refund_id(ids)
-  defp lookup_schema(ids, :wallets),      do: NewWay.Schema.Wallet.by_wallet_id(ids)
-  defp lookup_schema(ids, :withdrawals),  do: NewWay.Schema.Withdrawal.by_withdrawal_id(ids)
+  defp lookup_schema(ids, :adjustments),  do: NewWay.Schema.Adjustment.search(ids)
+  defp lookup_schema(ids, :destinations), do: NewWay.Schema.Destination.search(ids)
+  defp lookup_schema(ids, :invoices),     do: NewWay.Schema.Invoice.search(ids)
+  defp lookup_schema(ids, :payments),     do: NewWay.Schema.Payment.search(ids)
+  defp lookup_schema(ids, :payouts),      do: NewWay.Schema.Payout.search(ids)
+  defp lookup_schema(ids, :refunds),      do: NewWay.Schema.Refund.search(ids)
+  defp lookup_schema(ids, :wallets),      do: NewWay.Schema.Wallet.search(ids)
+  defp lookup_schema(ids, :withdrawals),  do: NewWay.Schema.Withdrawal.search(ids)
 
   @spec get_namespaces([Pathfinder.namespace] | :undefined) :: [Pathfinder.namespace]
   defp get_namespaces(list) when is_list(list),

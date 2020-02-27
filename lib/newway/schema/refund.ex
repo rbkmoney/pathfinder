@@ -1,17 +1,15 @@
 defmodule NewWay.Schema.Refund do
   use Ecto.Schema
-  @schema_prefix "nw"
+  use NewWay.Helper.SearchIn, field: :refund_id
+  require NewWay.Macro.EnumType, as: EnumType
 
-  import NewWay.Macro.{EnumType, LookupKey}
-
-  defenum(RefundStatus, [
+  EnumType.def_enum(RefundStatus, [
     :pending,
     :succeeded,
     :failed
   ])
 
-  lookup_key(:refund_id)
-
+  @schema_prefix "nw"
   schema "refund" do
     field(:event_created_at,                                 :utc_datetime)
     field(:domain_revision,                                  :integer)

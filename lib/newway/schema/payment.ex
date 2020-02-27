@@ -1,10 +1,9 @@
 defmodule NewWay.Schema.Payment do
   use Ecto.Schema
-  @schema_prefix "nw"
+  use NewWay.Helper.SearchIn, field: :payment_id
+  require NewWay.Macro.EnumType, as: EnumType
 
-  import NewWay.Macro.{EnumType, LookupKey}
-
-  defenum(PaymentStatus, [
+  EnumType.def_enum(PaymentStatus, [
     :pending,
     :processed,
     :captured,
@@ -13,13 +12,13 @@ defmodule NewWay.Schema.Payment do
     :failed
   ])
 
-  defenum(PayerType, [
+  EnumType.def_enum(PayerType, [
     :payment_resource,
     :customer,
     :recurrent
   ])
 
-  defenum(PaymentToolType, [
+  EnumType.def_enum(PaymentToolType, [
     :bank_card,
     :payment_terminal,
     :digital_wallet,
@@ -27,19 +26,18 @@ defmodule NewWay.Schema.Payment do
     :mobile_commerce
   ])
 
-  defenum(PaymentFlowType, [
+  EnumType.def_enum(PaymentFlowType, [
     :instant,
     :hold
   ])
 
-  defenum(RiskScore, [
+  EnumType.def_enum(RiskScore, [
     :low,
     :high,
     :fatal
   ])
 
-  lookup_key(:payment_id)
-
+  @schema_prefix "nw"
   schema "payment" do
     field(:event_created_at,                                 :utc_datetime)
     field(:payment_id,                                       :string)

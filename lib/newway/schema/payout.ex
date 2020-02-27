@@ -1,40 +1,38 @@
 defmodule NewWay.Schema.Payout do
   use Ecto.Schema
-  @schema_prefix "nw"
+  use NewWay.Helper.SearchIn, field: :payout_id
+  require NewWay.Macro.EnumType, as: EnumType
 
-  import NewWay.Macro.{EnumType, LookupKey}
-
-  defenum(PayoutStatus, [
+  EnumType.def_enum(PayoutStatus, [
     :unpaid,
     :paid,
     :cancelled,
     :confirmed
   ])
 
-  defenum(PayoutPaidStatusDetails, [
+  EnumType.def_enum(PayoutPaidStatusDetails, [
     :card_details,
     :account_details
   ])
 
-  defenum(UserType, [
+  EnumType.def_enum(UserType, [
     :internal_user,
     :external_user,
     :service_user
   ])
 
-  defenum(PayoutType, [
+  EnumType.def_enum(PayoutType, [
     :bank_card,
     :bank_account,
     :wallet
   ])
 
-  defenum(PayoutAccountType, [
+  EnumType.def_enum(PayoutAccountType, [
     :russian_payout_account,
     :international_payout_account
   ])
 
-  lookup_key(:payout_id)
-
+  @schema_prefix "nw"
   schema "payout" do
     field(:event_id,                                                   :integer)
     field(:event_created_at,                                           :utc_datetime)

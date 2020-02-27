@@ -1,24 +1,22 @@
 defmodule NewWay.Schema.Withdrawal do
   use Ecto.Schema
-  @schema_prefix "nw"
+  use NewWay.Helper.SearchIn, field: :withdrawal_id
+  require NewWay.Macro.EnumType, as: EnumType
 
-  import NewWay.Macro.{EnumType, LookupKey}
-
-  defenum(WithdrawalStatus, [
+  EnumType.def_enum(WithdrawalStatus, [
     :pending,
     :succeeded,
     :failed
   ])
 
-  defenum(WithdrawalTransferStatus, [
+  EnumType.def_enum(WithdrawalTransferStatus, [
     :created,
     :prepared,
     :committed,
     :cancelled
   ])
 
-  lookup_key(:withdrawal_id)
-
+  @schema_prefix "nw"
   schema "withdrawal" do
     field(:event_id,                              :integer)
     field(:event_created_at,                      :utc_datetime)

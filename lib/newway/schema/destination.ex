@@ -1,21 +1,19 @@
 defmodule NewWay.Schema.Destination do
   use Ecto.Schema
-  @schema_prefix "nw"
+  use NewWay.Helper.SearchIn, field: :destination_id
+  require NewWay.Macro.EnumType, as: EnumType
 
-  import NewWay.Macro.{EnumType, LookupKey}
-
-  defenum(DestinationStatus, [
+  EnumType.def_enum(DestinationStatus, [
     :authorized,
     :unauthorized
   ])
 
-  defenum(DestinationResourceType, [
+  EnumType.def_enum(DestinationResourceType, [
     :bank_card,
     :crypto_wallet
   ])
 
-  lookup_key(:destination_id)
-
+  @schema_prefix "nw"
   schema "destination" do
     field(:event_id,                          :integer)
     field(:event_created_at,                  :utc_datetime)

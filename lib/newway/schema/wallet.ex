@@ -1,11 +1,8 @@
 defmodule NewWay.Schema.Wallet do
   use Ecto.Schema
+  use NewWay.Helper.SearchIn, field: :wallet_id
+
   @schema_prefix "nw"
-
-  import NewWay.Macro.LookupKey
-
-  lookup_key(:wallet_id)
-
   schema "wallet" do
     field(:event_id,             :integer)
     field(:event_created_at,     :utc_datetime)

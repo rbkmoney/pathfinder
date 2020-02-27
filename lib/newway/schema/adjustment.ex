@@ -1,18 +1,16 @@
 defmodule NewWay.Schema.Adjustment do
   use Ecto.Schema
-  @schema_prefix "nw"
+  use NewWay.Helper.SearchIn, field: :adjustment_id
+  require NewWay.Macro.EnumType, as: EnumType
 
-  import NewWay.Macro.{EnumType, LookupKey}
-
-  defenum(AdjustmentStatus, [
+  EnumType.def_enum(AdjustmentStatus, [
     :pending,
     :captured,
     :cancelled,
     :processed
   ])
 
-  lookup_key(:adjustment_id)
-
+  @schema_prefix "nw"
   schema "adjustment" do
     field(:event_created_at,    :utc_datetime)
     field(:domain_revision,     :integer)

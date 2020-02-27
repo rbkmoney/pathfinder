@@ -1,5 +1,5 @@
 defmodule NewWay.Macro.EnumType do
-  defmacro defenum(enum_name, allowed_values) when is_list(allowed_values) do
+  defmacro def_enum(enum_name, allowed_values) when is_list(allowed_values) do
     quote do
       defmodule unquote(enum_name) do
         use Ecto.Type
