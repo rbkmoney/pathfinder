@@ -21,43 +21,46 @@ defmodule NewWay.Schema.Wallet do
   end
 end
 
-defimpl Pathfinder.Protocol.Thrift, for: NewWay.Schema.Wallet do
-  alias Pathfinder.Protocol.Thrift
-  import Thrift.Header
+defimpl Pathfinder.Thrift.Codec, for: NewWay.Schema.Wallet do
+  alias Pathfinder.Thrift.Codec
+  require Pathfinder.Thrift.Proto, as: Proto
 
-  @spec encode(%NewWay.Schema.Wallet{}) :: Thrift.Header.t
+  @type wallet_thrift :: :pathfinder_proto_lookup_thrift."Wallet"()
+  Proto.import_record(:pf_Wallet)
+
+  @spec encode(%NewWay.Schema.Wallet{}) :: wallet_thrift
   def encode(wallet) do
     pf_Wallet(
       id:
-        Thrift.encode(wallet.id),
+        Codec.encode(wallet.id),
       event_id:
-        Thrift.encode(wallet.event_id),
+        Codec.encode(wallet.event_id),
       event_created_at:
-        Thrift.encode(wallet.event_created_at),
+        Codec.encode(wallet.event_created_at),
       event_occured_at:
-        Thrift.encode(wallet.event_occured_at),
+        Codec.encode(wallet.event_occured_at),
       sequence_id:
-        Thrift.encode(wallet.sequence_id),
+        Codec.encode(wallet.sequence_id),
       wallet_id:
-        Thrift.encode(wallet.wallet_id),
+        Codec.encode(wallet.wallet_id),
       wallet_name:
-        Thrift.encode(wallet.wallet_name),
+        Codec.encode(wallet.wallet_name),
       identity_id:
-        Thrift.encode(wallet.identity_id),
+        Codec.encode(wallet.identity_id),
       party_id:
-        Thrift.encode(wallet.party_id),
+        Codec.encode(wallet.party_id),
       currency_code:
-        Thrift.encode(wallet.currency_code),
+        Codec.encode(wallet.currency_code),
       wtime:
-        Thrift.encode(wallet.wtime),
+        Codec.encode(wallet.wtime),
       current:
-        Thrift.encode(wallet.current),
+        Codec.encode(wallet.current),
       account_id:
-        Thrift.encode(wallet.account_id),
+        Codec.encode(wallet.account_id),
       accounter_account_id:
-        Thrift.encode(wallet.accounter_account_id),
+        Codec.encode(wallet.accounter_account_id),
       external_id:
-        Thrift.encode(wallet.external_id)
+        Codec.encode(wallet.external_id)
     )
   end
 end

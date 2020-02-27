@@ -35,55 +35,58 @@ defmodule NewWay.Schema.Adjustment do
   end
 end
 
-defimpl Pathfinder.Protocol.Thrift, for: NewWay.Schema.Adjustment do
-  alias Pathfinder.Protocol.Thrift
-  import Thrift.Header
+defimpl Pathfinder.Thrift.Codec, for: NewWay.Schema.Adjustment do
+  alias Pathfinder.Thrift.Codec
+  require Pathfinder.Thrift.Proto, as: Proto
 
-  @spec encode(%NewWay.Schema.Adjustment{}) :: Thrift.Header.t
+  @type adjustment_thrift :: :pathfinder_proto_lookup_thrift."Adjustment"()
+  Proto.import_record(:pf_Adjustment)
+
+  @spec encode(%NewWay.Schema.Adjustment{}) :: adjustment_thrift
   def encode(adjustment) do
     pf_Adjustment(
       id:
-        Thrift.encode(adjustment.id),
+        Codec.encode(adjustment.id),
       event_created_at:
-        Thrift.encode(adjustment.event_created_at),
+        Codec.encode(adjustment.event_created_at),
       domain_revision:
-        Thrift.encode(adjustment.domain_revision),
+        Codec.encode(adjustment.domain_revision),
       adjustment_id:
-        Thrift.encode(adjustment.adjustment_id),
+        Codec.encode(adjustment.adjustment_id),
       payment_id:
-        Thrift.encode(adjustment.payment_id),
+        Codec.encode(adjustment.payment_id),
       invoice_id:
-        Thrift.encode(adjustment.invoice_id),
+        Codec.encode(adjustment.invoice_id),
       party_id:
-        Thrift.encode(adjustment.party_id),
+        Codec.encode(adjustment.party_id),
       shop_id:
-        Thrift.encode(adjustment.shop_id),
+        Codec.encode(adjustment.shop_id),
       created_at:
-        Thrift.encode(adjustment.created_at),
+        Codec.encode(adjustment.created_at),
       status:
-        Thrift.encode(adjustment.status),
+        Codec.encode(adjustment.status),
       status_captured_at:
-        Thrift.encode(adjustment.status_captured_at),
+        Codec.encode(adjustment.status_captured_at),
       status_cancelled_at:
-        Thrift.encode(adjustment.status_cancelled_at),
+        Codec.encode(adjustment.status_cancelled_at),
       reason:
-        Thrift.encode(adjustment.reason),
+        Codec.encode(adjustment.reason),
       wtime:
-        Thrift.encode(adjustment.wtime),
+        Codec.encode(adjustment.wtime),
       current:
-        Thrift.encode(adjustment.current),
+        Codec.encode(adjustment.current),
       fee:
-        Thrift.encode(adjustment.fee),
+        Codec.encode(adjustment.fee),
       provider_fee:
-        Thrift.encode(adjustment.provider_fee),
+        Codec.encode(adjustment.provider_fee),
       external_fee:
-        Thrift.encode(adjustment.external_fee),
+        Codec.encode(adjustment.external_fee),
       party_revision:
-        Thrift.encode(adjustment.party_revision),
+        Codec.encode(adjustment.party_revision),
       sequence_id:
-        Thrift.encode(adjustment.sequence_id),
+        Codec.encode(adjustment.sequence_id),
       change_id:
-        Thrift.encode(adjustment.change_id)
+        Codec.encode(adjustment.change_id)
     )
   end
 end

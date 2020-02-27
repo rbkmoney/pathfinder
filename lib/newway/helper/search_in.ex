@@ -1,7 +1,7 @@
 defmodule NewWay.Helper.SearchIn do
   defmacro __using__(opts) do
     quote do
-      @spec search([Pathfinder.id]) :: [%__MODULE__{}]
+      @spec search([Pathfinder.lookup_id]) :: [%__MODULE__{}]
       def search(ids) do
         require Ecto.Query
         __MODULE__

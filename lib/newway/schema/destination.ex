@@ -46,71 +46,74 @@ defmodule NewWay.Schema.Destination do
   end
 end
 
-defimpl Pathfinder.Protocol.Thrift, for: NewWay.Schema.Destination do
-  alias Pathfinder.Protocol.Thrift
-  import Thrift.Header
+defimpl Pathfinder.Thrift.Codec, for: NewWay.Schema.Destination do
+  alias Pathfinder.Thrift.Codec
+  require Pathfinder.Thrift.Proto, as: Proto
 
-  @spec encode(%NewWay.Schema.Destination{}) :: Thrift.Header.t
+  @type destination_thrift :: :pathfinder_proto_lookup_thrift."Destination"()
+  Proto.import_record(:pf_Destination)
+
+  @spec encode(%NewWay.Schema.Destination{}) :: destination_thrift
   def encode(destination) do
     pf_Destination(
       id:
-        Thrift.encode(destination.id),
+        Codec.encode(destination.id),
       event_id:
-        Thrift.encode(destination.event_id),
+        Codec.encode(destination.event_id),
       event_created_at:
-        Thrift.encode(destination.event_created_at),
+        Codec.encode(destination.event_created_at),
       event_occured_at:
-        Thrift.encode(destination.event_occured_at),
+        Codec.encode(destination.event_occured_at),
       sequence_id:
-        Thrift.encode(destination.sequence_id),
+        Codec.encode(destination.sequence_id),
       destination_id:
-        Thrift.encode(destination.destination_id),
+        Codec.encode(destination.destination_id),
       destination_name:
-        Thrift.encode(destination.destination_name),
+        Codec.encode(destination.destination_name),
       destination_status:
-        Thrift.encode(destination.destination_status),
+        Codec.encode(destination.destination_status),
       resource_bank_card_token:
-        Thrift.encode(destination.resource_bank_card_token),
+        Codec.encode(destination.resource_bank_card_token),
       resource_bank_card_payment_system:
-        Thrift.encode(destination.resource_bank_card_payment_system),
+        Codec.encode(destination.resource_bank_card_payment_system),
       resource_bank_card_bin:
-        Thrift.encode(destination.resource_bank_card_bin),
+        Codec.encode(destination.resource_bank_card_bin),
       resource_bank_card_masked_pan:
-        Thrift.encode(destination.resource_bank_card_masked_pan),
+        Codec.encode(destination.resource_bank_card_masked_pan),
       account_id:
-        Thrift.encode(destination.account_id),
+        Codec.encode(destination.account_id),
       identity_id:
-        Thrift.encode(destination.identity_id),
+        Codec.encode(destination.identity_id),
       party_id:
-        Thrift.encode(destination.party_id),
+        Codec.encode(destination.party_id),
       accounter_account_id:
-        Thrift.encode(destination.accounter_account_id),
+        Codec.encode(destination.accounter_account_id),
       currency_code:
-        Thrift.encode(destination.currency_code),
+        Codec.encode(destination.currency_code),
       wtime:
-        Thrift.encode(destination.wtime),
+        Codec.encode(destination.wtime),
       current:
-        Thrift.encode(destination.current),
+        Codec.encode(destination.current),
       external_id:
-        Thrift.encode(destination.external_id),
+        Codec.encode(destination.external_id),
       created_at:
-        Thrift.encode(destination.created_at),
+        Codec.encode(destination.created_at),
       context_json:
-        Thrift.encode(destination.context_json),
+        Codec.encode(destination.context_json),
       resource_crypto_wallet_id:
-        Thrift.encode(destination.resource_crypto_wallet_id),
+        Codec.encode(destination.resource_crypto_wallet_id),
       resource_crypto_wallet_type:
-        Thrift.encode(destination.resource_crypto_wallet_type),
+        Codec.encode(destination.resource_crypto_wallet_type),
       resource_type:
-        Thrift.encode(destination.resource_type),
+        Codec.encode(destination.resource_type),
       resource_crypto_wallet_data:
-        Thrift.encode(destination.resource_crypto_wallet_data),
+        Codec.encode(destination.resource_crypto_wallet_data),
       resource_bank_card_type:
-        Thrift.encode(destination.resource_bank_card_type),
+        Codec.encode(destination.resource_bank_card_type),
       resource_bank_card_issuer_country:
-        Thrift.encode(destination.resource_bank_card_issuer_country),
+        Codec.encode(destination.resource_bank_card_issuer_country),
       resource_bank_card_bank_name:
-        Thrift.encode(destination.resource_bank_card_bank_name)
+        Codec.encode(destination.resource_bank_card_bank_name)
     )
   end
 end

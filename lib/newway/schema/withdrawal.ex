@@ -40,53 +40,56 @@ defmodule NewWay.Schema.Withdrawal do
   end
 end
 
-defimpl Pathfinder.Protocol.Thrift, for: NewWay.Schema.Withdrawal do
-  alias Pathfinder.Protocol.Thrift
-  import Thrift.Header
+defimpl Pathfinder.Thrift.Codec, for: NewWay.Schema.Withdrawal do
+  alias Pathfinder.Thrift.Codec
+  require Pathfinder.Thrift.Proto, as: Proto
 
-  @spec encode(%NewWay.Schema.Withdrawal{}) :: Thrift.Header.t
+  @type withdrawal_thrift :: :pathfinder_proto_lookup_thrift."Withdrawal"()
+  Proto.import_record(:pf_Withdrawal)
+
+  @spec encode(%NewWay.Schema.Withdrawal{}) :: withdrawal_thrift
   def encode(withdrawal) do
     pf_Withdrawal(
       id:
-        Thrift.encode(withdrawal.id),
+        Codec.encode(withdrawal.id),
       event_id:
-        Thrift.encode(withdrawal.event_id),
+        Codec.encode(withdrawal.event_id),
       event_created_at:
-        Thrift.encode(withdrawal.event_created_at),
+        Codec.encode(withdrawal.event_created_at),
       event_occured_at:
-        Thrift.encode(withdrawal.event_occured_at),
+        Codec.encode(withdrawal.event_occured_at),
       sequence_id:
-        Thrift.encode(withdrawal.sequence_id),
+        Codec.encode(withdrawal.sequence_id),
       wallet_id:
-        Thrift.encode(withdrawal.wallet_id),
+        Codec.encode(withdrawal.wallet_id),
       destination_id:
-        Thrift.encode(withdrawal.destination_id),
+        Codec.encode(withdrawal.destination_id),
       withdrawal_id:
-        Thrift.encode(withdrawal.withdrawal_id),
+        Codec.encode(withdrawal.withdrawal_id),
       provider_id:
-        Thrift.encode(withdrawal.provider_id),
+        Codec.encode(withdrawal.provider_id),
       amount:
-        Thrift.encode(withdrawal.amount),
+        Codec.encode(withdrawal.amount),
       currency_code:
-        Thrift.encode(withdrawal.currency_code),
+        Codec.encode(withdrawal.currency_code),
       withdrawal_status:
-        Thrift.encode(withdrawal.withdrawal_status),
+        Codec.encode(withdrawal.withdrawal_status),
       withdrawal_transfer_status:
-        Thrift.encode(withdrawal.withdrawal_transfer_status),
+        Codec.encode(withdrawal.withdrawal_transfer_status),
       wtime:
-        Thrift.encode(withdrawal.wtime),
+        Codec.encode(withdrawal.wtime),
       current:
-        Thrift.encode(withdrawal.current),
+        Codec.encode(withdrawal.current),
       fee:
-        Thrift.encode(withdrawal.fee),
+        Codec.encode(withdrawal.fee),
       provider_fee:
-        Thrift.encode(withdrawal.provider_fee),
+        Codec.encode(withdrawal.provider_fee),
       external_id:
-        Thrift.encode(withdrawal.external_id),
+        Codec.encode(withdrawal.external_id),
       context_json:
-        Thrift.encode(withdrawal.context_json),
+        Codec.encode(withdrawal.context_json),
       withdrawal_status_failed_failure_json:
-        Thrift.encode(withdrawal.withdrawal_status_failed_failure_json)
+        Codec.encode(withdrawal.withdrawal_status_failed_failure_json)
     )
   end
 end

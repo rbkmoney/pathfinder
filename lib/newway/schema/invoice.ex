@@ -36,57 +36,60 @@ defmodule NewWay.Schema.Invoice do
   end
 end
 
-defimpl Pathfinder.Protocol.Thrift, for: NewWay.Schema.Invoice do
-  alias Pathfinder.Protocol.Thrift
-  import Thrift.Header
+defimpl Pathfinder.Thrift.Codec, for: NewWay.Schema.Invoice do
+  alias Pathfinder.Thrift.Codec
+  require Pathfinder.Thrift.Proto, as: Proto
 
-  @spec encode(%NewWay.Schema.Invoice{}) :: Thrift.Header.t
+  @type invoice_thrift :: :pathfinder_proto_lookup_thrift."Invoice"()
+  Proto.import_record(:pf_Invoice)
+
+  @spec encode(%NewWay.Schema.Invoice{}) :: invoice_thrift
   def encode(invoice) do
     pf_Invoice(
       id:
-        Thrift.encode(invoice.id),
+        Codec.encode(invoice.id),
       event_created_at:
-        Thrift.encode(invoice.event_created_at),
+        Codec.encode(invoice.event_created_at),
       invoice_id:
-        Thrift.encode(invoice.invoice_id),
+        Codec.encode(invoice.invoice_id),
       party_id:
-        Thrift.encode(invoice.party_id),
+        Codec.encode(invoice.party_id),
       shop_id:
-        Thrift.encode(invoice.shop_id),
+        Codec.encode(invoice.shop_id),
       party_revision:
-        Thrift.encode(invoice.party_revision),
+        Codec.encode(invoice.party_revision),
       created_at:
-        Thrift.encode(invoice.created_at),
+        Codec.encode(invoice.created_at),
       status:
-        Thrift.encode(invoice.status),
+        Codec.encode(invoice.status),
       status_cancelled_details:
-        Thrift.encode(invoice.status_cancelled_details),
+        Codec.encode(invoice.status_cancelled_details),
       status_fulfilled_details:
-        Thrift.encode(invoice.status_fulfilled_details),
+        Codec.encode(invoice.status_fulfilled_details),
       details_product:
-        Thrift.encode(invoice.details_product),
+        Codec.encode(invoice.details_product),
       details_description:
-        Thrift.encode(invoice.details_description),
+        Codec.encode(invoice.details_description),
       due:
-        Thrift.encode(invoice.due),
+        Codec.encode(invoice.due),
       amount:
-        Thrift.encode(invoice.amount),
+        Codec.encode(invoice.amount),
       currency_code:
-        Thrift.encode(invoice.currency_code),
+        Codec.encode(invoice.currency_code),
       context:
-        Thrift.encode(invoice.context),
+        Codec.encode(invoice.context),
       template_id:
-        Thrift.encode(invoice.template_id),
+        Codec.encode(invoice.template_id),
       wtime:
-        Thrift.encode(invoice.wtime),
+        Codec.encode(invoice.wtime),
       current:
-        Thrift.encode(invoice.current),
+        Codec.encode(invoice.current),
       sequence_id:
-        Thrift.encode(invoice.sequence_id),
+        Codec.encode(invoice.sequence_id),
       change_id:
-        Thrift.encode(invoice.change_id),
+        Codec.encode(invoice.change_id),
       external_id:
-        Thrift.encode(invoice.external_id)
+        Codec.encode(invoice.external_id)
     )
   end
 end

@@ -38,63 +38,66 @@ defmodule NewWay.Schema.Refund do
   end
 end
 
-defimpl Pathfinder.Protocol.Thrift, for: NewWay.Schema.Refund do
-  alias Pathfinder.Protocol.Thrift
-  import Thrift.Header
+defimpl Pathfinder.Thrift.Codec, for: NewWay.Schema.Refund do
+  alias Pathfinder.Thrift.Codec
+  require Pathfinder.Thrift.Proto, as: Proto
 
-  @spec encode(%NewWay.Schema.Refund{}) :: Thrift.Header.t
+  @type refund_thrift :: :pathfinder_proto_lookup_thrift."Refund"()
+  Proto.import_record(:pf_Refund)
+
+  @spec encode(%NewWay.Schema.Refund{}) :: refund_thrift
   def encode(refund) do
     pf_Refund(
       id:
-        Thrift.encode(refund.id),
+        Codec.encode(refund.id),
       event_created_at:
-        Thrift.encode(refund.event_created_at),
+        Codec.encode(refund.event_created_at),
       domain_revision:
-        Thrift.encode(refund.domain_revision),
+        Codec.encode(refund.domain_revision),
       refund_id:
-        Thrift.encode(refund.refund_id),
+        Codec.encode(refund.refund_id),
       payment_id:
-        Thrift.encode(refund.payment_id),
+        Codec.encode(refund.payment_id),
       invoice_id:
-        Thrift.encode(refund.invoice_id),
+        Codec.encode(refund.invoice_id),
       party_id:
-        Thrift.encode(refund.party_id),
+        Codec.encode(refund.party_id),
       shop_id:
-        Thrift.encode(refund.shop_id),
+        Codec.encode(refund.shop_id),
       created_at:
-        Thrift.encode(refund.created_at),
+        Codec.encode(refund.created_at),
       status:
-        Thrift.encode(refund.status),
+        Codec.encode(refund.status),
       status_failed_failure:
-        Thrift.encode(refund.status_failed_failure),
+        Codec.encode(refund.status_failed_failure),
       amount:
-        Thrift.encode(refund.amount),
+        Codec.encode(refund.amount),
       currency_code:
-        Thrift.encode(refund.currency_code),
+        Codec.encode(refund.currency_code),
       reason:
-        Thrift.encode(refund.reason),
+        Codec.encode(refund.reason),
       wtime:
-        Thrift.encode(refund.wtime),
+        Codec.encode(refund.wtime),
       current:
-        Thrift.encode(refund.current),
+        Codec.encode(refund.current),
       session_payload_transaction_bound_trx_id:
-        Thrift.encode(refund.session_payload_transaction_bound_trx_id),
+        Codec.encode(refund.session_payload_transaction_bound_trx_id),
       session_payload_transaction_bound_trx_extra_json:
-        Thrift.encode(refund.session_payload_transaction_bound_trx_extra_json),
+        Codec.encode(refund.session_payload_transaction_bound_trx_extra_json),
       fee:
-        Thrift.encode(refund.fee),
+        Codec.encode(refund.fee),
       provider_fee:
-        Thrift.encode(refund.provider_fee),
+        Codec.encode(refund.provider_fee),
       external_fee:
-        Thrift.encode(refund.external_fee),
+        Codec.encode(refund.external_fee),
       party_revision:
-        Thrift.encode(refund.party_revision),
+        Codec.encode(refund.party_revision),
       sequence_id:
-        Thrift.encode(refund.sequence_id),
+        Codec.encode(refund.sequence_id),
       change_id:
-        Thrift.encode(refund.change_id),
+        Codec.encode(refund.change_id),
       external_id:
-        Thrift.encode(refund.external_id)
+        Codec.encode(refund.external_id)
     )
   end
 end

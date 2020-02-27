@@ -2,7 +2,17 @@ defmodule PathfinderTest do
   use ExUnit.Case
 
   alias  Woody.Client
-  import Pathfinder.Protocol.Thrift.Header
+  require Pathfinder.Thrift.Proto, as: Proto
+  Proto.import_record(:pf_LookupRequest)
+  Proto.import_record(:pf_LookupResult)
+  Proto.import_record(:pf_Adjustment)
+  Proto.import_record(:pf_Destination)
+  Proto.import_record(:pf_Invoice)
+  Proto.import_record(:pf_Payment)
+  Proto.import_record(:pf_Payout)
+  Proto.import_record(:pf_Refund)
+  Proto.import_record(:pf_Wallet)
+  Proto.import_record(:pf_Withdrawal)
 
   setup do
     client = Client.new("http://localhost:8022")
