@@ -1,6 +1,6 @@
 defmodule NewWay.Schema.Wallet do
   use Ecto.Schema
-  use NewWay.Helper.SearchIn, field: :wallet_id
+  use NewWay.Schema, search_field: :wallet_id
 
   @schema_prefix "nw"
   schema "wallet" do

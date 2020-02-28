@@ -1,6 +1,6 @@
 defmodule NewWay.Schema.Refund do
   use Ecto.Schema
-  use NewWay.Helper.SearchIn, field: :refund_id
+  use NewWay.Schema, search_field: :refund_id
   require NewWay.Macro.EnumType, as: EnumType
 
   EnumType.def_enum(RefundStatus, [

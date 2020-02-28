@@ -19,11 +19,7 @@ defmodule NewWay.Macro.EnumType do
     encode(string, allowed_values)
   end
   def cast(atom, allowed_values) when is_atom(atom) do
-    if Enum.member?(allowed_values, atom) do
-      {:ok, atom}
-    else
-      :error
-    end
+    check_allowed(atom, allowed_values)
   end
   def cast(_, _), do: :error
 
@@ -41,8 +37,16 @@ defmodule NewWay.Macro.EnumType do
 
   @spec encode(binary, [atom]) :: {:ok, atom} | :error
   defp encode(string, allowed_values) do
-    atom = String.to_atom(string)
+    try do
+      atom = String.to_existing_atom(string)
+      check_allowed(atom, allowed_values)
+    rescue
+      ArgumentError -> :error
+    end
+  end
 
+  @spec check_allowed(atom, [atom]) :: {:ok, atom} | :error
+  defp check_allowed(atom, allowed_values) do
     if Enum.member?(allowed_values, atom) do
       {:ok, atom}
     else
@@ -52,10 +56,9 @@ defmodule NewWay.Macro.EnumType do
 
   @spec decode(atom, [atom]) :: {:ok, binary} | :error
   defp decode(atom, allowed_values) do
-    if Enum.member?(allowed_values, atom) do
-      {:ok, Atom.to_string(atom)}
-    else
-      :error
+    case check_allowed(atom, allowed_values) do
+      {:ok, atom} -> {:ok, Atom.to_string(atom)}
+      _ -> :error
     end
   end
 end

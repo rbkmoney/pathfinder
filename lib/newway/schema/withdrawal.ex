@@ -1,6 +1,6 @@
 defmodule NewWay.Schema.Withdrawal do
   use Ecto.Schema
-  use NewWay.Helper.SearchIn, field: :withdrawal_id
+  use NewWay.Schema, search_field: :withdrawal_id
   require NewWay.Macro.EnumType, as: EnumType
 
   EnumType.def_enum(WithdrawalStatus, [

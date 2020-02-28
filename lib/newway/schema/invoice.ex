@@ -1,6 +1,6 @@
 defmodule NewWay.Schema.Invoice do
   use Ecto.Schema
-  use NewWay.Helper.SearchIn, field: :invoice_id
+  use NewWay.Schema, search_field: :invoice_id
   require NewWay.Macro.EnumType, as: EnumType
 
   EnumType.def_enum(InvoiceStatus, [

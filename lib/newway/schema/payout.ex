@@ -1,6 +1,6 @@
 defmodule NewWay.Schema.Payout do
   use Ecto.Schema
-  use NewWay.Helper.SearchIn, field: :payout_id
+  use NewWay.Schema, search_field: :payout_id
   require NewWay.Macro.EnumType, as: EnumType
 
   EnumType.def_enum(PayoutStatus, [

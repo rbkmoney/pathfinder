@@ -1,6 +1,6 @@
 defmodule NewWay.Schema.Destination do
   use Ecto.Schema
-  use NewWay.Helper.SearchIn, field: :destination_id
+  use NewWay.Schema, search_field: :destination_id
   require NewWay.Macro.EnumType, as: EnumType
 
   EnumType.def_enum(DestinationStatus, [
