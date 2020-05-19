@@ -65,7 +65,7 @@ defmodule Pathfinder.Handler.Lookup do
   defp get_namespaces(list) when is_list(list),
     do: list
   defp get_namespaces(:undefined),
-    do: [:adjustments, :destinations, :invoices, :payouts, :wallets, :withdrawals]
+    do: [:destinations, :invoices, :payouts, :wallets, :withdrawals]
 
   @spec to_thrift(Pathfinder.lookup_namespace, [struct]) ::
     result_data_thrift
