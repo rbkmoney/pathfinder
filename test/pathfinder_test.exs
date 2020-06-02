@@ -53,7 +53,7 @@ defmodule PathfinderTest do
 
     {:ok, pf_LookupResult(data: [
       {:destinations, [pf_Destination(id: 3)]},
-      {:idenitites,   [pf_Identity(id: 3)]},
+      {:identities,   [pf_Identity(id: 3)]},
       {:invoices,     [pf_Invoice(id: 3)]},
       {:parties,      [pf_Party(id: 3)]},
       {:payouts,      [pf_Payout(id: 3)]},

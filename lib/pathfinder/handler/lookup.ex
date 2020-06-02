@@ -67,7 +67,7 @@ defmodule Pathfinder.Handler.Lookup do
   @spec lookup_schema([Pathfinder.lookup_id], Pathfinder.lookup_namespace) ::
     [struct]
   defp lookup_schema(ids, :destinations), do: NewWay.Schema.Destination.search(ids)
-  defp lookup_schema(ids, :idenitites),   do: NewWay.Schema.Identity.search(ids)
+  defp lookup_schema(ids, :identities),   do: NewWay.Schema.Identity.search(ids)
   defp lookup_schema(ids, :invoices),     do: NewWay.Schema.Invoice.search(ids)
   defp lookup_schema(ids, :parties),      do: NewWay.Schema.Party.search(ids)
   defp lookup_schema(ids, :payouts),      do: NewWay.Schema.Payout.search(ids)
@@ -84,7 +84,7 @@ defmodule Pathfinder.Handler.Lookup do
   defp get_namespaces(list) when is_list(list),
     do: for {namespace, _} <- list, do: namespace
   defp get_namespaces(:undefined),
-    do: [:destinations, :idenitites, :invoices, :parties, :payouts, :shops, :wallets, :withdrawals]
+    do: [:destinations, :identities, :invoices, :parties, :payouts, :shops, :wallets, :withdrawals]
 
   @spec to_thrift(Pathfinder.lookup_namespace, [struct]) ::
     result_data_thrift
