@@ -3,8 +3,8 @@ defmodule Pathfinder.Thrift.Proto do
     quote do
       require Record
       @proto_path "pathfinder_proto/include/pathfinder_proto_lookup_thrift.hrl"
-      Enum.each(unquote(names), fn x ->
-        Record.defrecord(x, Record.extract(x, from_lib: @proto_path))
+      Enum.each(unquote(names), fn name ->
+        Record.defrecord(name, Record.extract(name, from_lib: @proto_path))
       end)
     end
   end

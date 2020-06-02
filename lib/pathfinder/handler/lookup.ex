@@ -81,8 +81,8 @@ defmodule Pathfinder.Handler.Lookup do
 
   @spec get_namespaces([lookup_namespace_thrift] | :undefined) ::
     [Pathfinder.lookup_namespace]
-  defp get_namespaces(list) when is_list(list),
-    do: for {namespace, _} <- list, do: namespace
+  defp get_namespaces(thrift_namespaces) when is_list(thrift_namespaces),
+    do: for {namespace, _} <- thrift_namespaces, do: namespace
   defp get_namespaces(:undefined),
     do: [:destinations, :identities, :invoices, :parties, :payouts, :shops, :wallets, :withdrawals]
 
