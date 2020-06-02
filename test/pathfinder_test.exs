@@ -57,7 +57,7 @@ defmodule PathfinderTest do
       {:invoices,     [pf_Invoice(id: 3)]},
       {:parties,      [pf_Party(id: 3)]},
       {:payouts,      [pf_Payout(id: 3)]},
-      {:shops,         [pf_Shop(id: 3)]},
+      {:shops,        [pf_Shop(id: 3)]},
       {:wallets,      [pf_Wallet(id: 3)]},
       {:withdrawals,  [pf_Withdrawal(id: 3)]}
     ])} = Client.lookup(lookup_request, ctx[:client])
