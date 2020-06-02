@@ -22,6 +22,7 @@ defmodule Pathfinder.Handler.Lookup do
   @type lookup_request_thrift :: :pathfinder_proto_lookup_thrift."LookupRequest"()
   @type lookup_result_thrift :: :pathfinder_proto_lookup_thrift."LookupResult"()
   @type result_data_thrift :: :pathfinder_proto_lookup_thrift."ResultData"()
+  @type lookup_namespace_thrift :: :pathfinder_proto_lookup_thrift."LookupNamespace"()
 
   @behaviour :woody_server_thrift_handler
 
@@ -65,42 +66,29 @@ defmodule Pathfinder.Handler.Lookup do
 
   @spec lookup_schema([Pathfinder.lookup_id], Pathfinder.lookup_namespace) ::
     [struct]
-  defp lookup_schema(ids, {:destinations, _}), do: NewWay.Schema.Destination.search(ids)
-  defp lookup_schema(ids, {:idenitites, _}),   do: NewWay.Schema.Identity.search(ids)
-  defp lookup_schema(ids, {:invoices, _}),     do: NewWay.Schema.Invoice.search(ids)
-  defp lookup_schema(ids, {:parties, _}),      do: NewWay.Schema.Party.search(ids)
-  defp lookup_schema(ids, {:payouts, _}),      do: NewWay.Schema.Payout.search(ids)
-  defp lookup_schema(ids, {:shops, _}),        do: NewWay.Schema.Shop.search(ids)
-  defp lookup_schema(ids, {:wallets, _}),      do: NewWay.Schema.Wallet.search(ids)
-  defp lookup_schema(ids, {:withdrawals, _}),  do: NewWay.Schema.Withdrawal.search(ids)
+  defp lookup_schema(ids, :destinations), do: NewWay.Schema.Destination.search(ids)
+  defp lookup_schema(ids, :idenitites),   do: NewWay.Schema.Identity.search(ids)
+  defp lookup_schema(ids, :invoices),     do: NewWay.Schema.Invoice.search(ids)
+  defp lookup_schema(ids, :parties),      do: NewWay.Schema.Party.search(ids)
+  defp lookup_schema(ids, :payouts),      do: NewWay.Schema.Payout.search(ids)
+  defp lookup_schema(ids, :shops),        do: NewWay.Schema.Shop.search(ids)
+  defp lookup_schema(ids, :wallets),      do: NewWay.Schema.Wallet.search(ids)
+  defp lookup_schema(ids, :withdrawals),  do: NewWay.Schema.Withdrawal.search(ids)
   # Ignore namespaces without global id's for now
-  defp lookup_schema(_ids, {:adjustments, _}),  do: []
-  defp lookup_schema(_ids, {:refunds, _}),      do: []
-  defp lookup_schema(_ids, {:payments, _}),     do: []
+  defp lookup_schema(_ids, :adjustments),  do: []
+  defp lookup_schema(_ids, :refunds),      do: []
+  defp lookup_schema(_ids, :payments),     do: []
 
-  @spec get_namespaces([Pathfinder.lookup_namespace] | :undefined) ::
+  @spec get_namespaces([lookup_namespace_thrift] | :undefined) ::
     [Pathfinder.lookup_namespace]
   defp get_namespaces(list) when is_list(list),
-    do: list
-  defp get_namespaces(:undefined) do
-    [
-      #{:adjustments, pf_AdjustmentNamespace()},
-      {:destinations, pf_DestinationNamespace()},
-      {:idenitites, pf_IdentityNamespace()},
-      {:invoices, pf_InvoiceNamespace()},
-      {:parties, pf_PartyNamespace()},
-      #{:payments, pf_PaymentNamespace()},
-      {:payouts, pf_PayoutNamespace()},
-      #{:refunds, pf_RefundNamespace()},
-      {:shops, pf_ShopNamespace()},
-      {:wallets, pf_WalletNamespace()},
-      {:withdrawals, pf_WithdrawalNamespace()}
-    ]
-  end
+    do: for {namespace, _} <- list, do: namespace
+  defp get_namespaces(:undefined),
+    do: [:destinations, :idenitites, :invoices, :parties, :payouts, :shops, :wallets, :withdrawals]
 
   @spec to_thrift(Pathfinder.lookup_namespace, [struct]) ::
     result_data_thrift
-  defp to_thrift({namespace, _}, list) when is_list(list),
+  defp to_thrift(namespace, list) when is_list(list),
     do: {namespace, Enum.map(list, &Pathfinder.Thrift.Codec.encode/1)}
 
 end
