@@ -114,8 +114,8 @@ defmodule PathfinderTest do
 
     {:ok, [
       {:adjustments, [pf_Adjustment(id: 1)]},
-      {:refunds,     [pf_Refund(id: 1)]},
-      {:payments,    [pf_Payment(id: 1)]}
+      {:payments,    [pf_Payment(id: 1)]},
+      {:refunds,     [pf_Refund(id: 1)]}
     ]} = Client.search_related(relation_params, ctx[:client])
   end
 

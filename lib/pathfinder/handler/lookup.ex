@@ -108,10 +108,8 @@ defmodule Pathfinder.Handler.Lookup do
   @spec filter_assoc_namespaces(NewWay.schema_type, [Pathfinder.lookup_namespace]) ::
     [Pathfinder.lookup_namespace]
   defp filter_assoc_namespaces(%schema_type{}, namespaces) do
-    schema_associations = schema_type.__schema__(:associations)
-    Enum.filter(namespaces, fn namespace ->
-      Enum.member?(schema_associations, namespace)
-    end)
+    schema_type.__schema__(:associations)
+    |> Enum.filter(fn association -> Enum.member?(namespaces, association) end)
   end
 
   @spec query_assoc_namespace(NewWay.schema_type, Pathfinder.lookup_namespace) ::
