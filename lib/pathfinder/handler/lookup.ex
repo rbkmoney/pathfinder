@@ -117,7 +117,8 @@ defmodule Pathfinder.Handler.Lookup do
   defp query_assoc_namespace(schema, namespace) do
     require Ecto.Query
     Ecto.assoc(schema, namespace)
-    |> Ecto.Query.limit(10) # @TODO probably need to implement pagination later
+    |> Ecto.Query.order_by(desc: :event_created_at)
+    |> Ecto.Query.limit(15) # @TODO probably need to implement pagination later
     |> NewWay.Repo.all()
   end
 
