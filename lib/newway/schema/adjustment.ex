@@ -85,7 +85,9 @@ defimpl Pathfinder.Thrift.Codec, for: NewWay.Schema.Adjustment do
       sequence_id:
         Codec.encode(adjustment.sequence_id),
       change_id:
-        Codec.encode(adjustment.change_id)
+        Codec.encode(adjustment.change_id),
+      amount:
+        Codec.encode(adjustment.amount)
     )
   end
 end
