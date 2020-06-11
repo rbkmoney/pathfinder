@@ -115,7 +115,7 @@ defmodule Pathfinder.Handler.Lookup do
   @spec query_assoc_namespace(NewWay.schema_type, Pathfinder.lookup_namespace) ::
     [NewWay.schema_type]
   defp query_assoc_namespace(schema, namespace) do
-    limit = Application.get_env(:pathfinder, :query_limit, 15)
+    limit = Application.get_env(:pathfinder, :assoc_query_limit, 15)
     require Ecto.Query
     Ecto.assoc(schema, namespace)
     |> Ecto.Query.order_by(desc: :id)
