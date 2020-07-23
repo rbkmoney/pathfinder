@@ -115,6 +115,6 @@ defimpl Pathfinder.Thrift.Codec, for: NewWay.Schema.Party do
   end
 
   defp define(:integer, nil), do: 0
-  defp define(_, V), do: V
+  defp define(_type, v), do: v
 
 end
