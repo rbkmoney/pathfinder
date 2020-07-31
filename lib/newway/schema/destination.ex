@@ -55,7 +55,6 @@ defmodule NewWay.Schema.Destination do
 end
 
 defimpl NewWay.Protocol.SearchResult, for: NewWay.Schema.Destination do
-  alias NewWay.Protocol.SearchResult.Utils
   alias NewWay.SearchResult
 
   @spec encode(%NewWay.Schema.Destination{}) :: %SearchResult{}
@@ -63,7 +62,7 @@ defimpl NewWay.Protocol.SearchResult, for: NewWay.Schema.Destination do
     %SearchResult{
       id: destination.destination_id,
       ns: :destinations,
-      data: Utils.schema_to_map(destination)
+      data: destination
     }
   end
 end

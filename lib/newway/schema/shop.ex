@@ -62,7 +62,6 @@ defmodule NewWay.Schema.Shop do
 end
 
 defimpl NewWay.Protocol.SearchResult, for: NewWay.Schema.Shop do
-  alias NewWay.Protocol.SearchResult.Utils
   alias NewWay.SearchResult
 
   @spec encode(%NewWay.Schema.Shop{}) :: %SearchResult{}
@@ -70,7 +69,7 @@ defimpl NewWay.Protocol.SearchResult, for: NewWay.Schema.Shop do
     %SearchResult{
       id: shop.shop_id,
       ns: :shops,
-      data: Utils.schema_to_map(shop)
+      data: shop
     }
   end
 end

@@ -32,7 +32,6 @@ defmodule NewWay.Schema.Wallet do
 end
 
 defimpl NewWay.Protocol.SearchResult, for: NewWay.Schema.Wallet do
-  alias NewWay.Protocol.SearchResult.Utils
   alias NewWay.SearchResult
 
   @spec encode(%NewWay.Schema.Wallet{}) :: %SearchResult{}
@@ -40,7 +39,7 @@ defimpl NewWay.Protocol.SearchResult, for: NewWay.Schema.Wallet do
     %SearchResult{
       id: wallet.wallet_id,
       ns: :wallets,
-      data: Utils.schema_to_map(wallet)
+      data: wallet
     }
   end
 end

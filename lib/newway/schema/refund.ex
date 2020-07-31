@@ -46,7 +46,6 @@ defmodule NewWay.Schema.Refund do
 end
 
 defimpl NewWay.Protocol.SearchResult, for: NewWay.Schema.Refund do
-  alias NewWay.Protocol.SearchResult.Utils
   alias NewWay.SearchResult
 
   @spec encode(%NewWay.Schema.Refund{}) :: %SearchResult{}
@@ -54,7 +53,7 @@ defimpl NewWay.Protocol.SearchResult, for: NewWay.Schema.Refund do
     %SearchResult{
       id: refund.refund_id,
       ns: :refunds,
-      data: Utils.schema_to_map(refund)
+      data: refund
     }
   end
 end

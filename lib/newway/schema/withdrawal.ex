@@ -47,7 +47,6 @@ defmodule NewWay.Schema.Withdrawal do
 end
 
 defimpl NewWay.Protocol.SearchResult, for: NewWay.Schema.Withdrawal do
-  alias NewWay.Protocol.SearchResult.Utils
   alias NewWay.SearchResult
 
   @spec encode(%NewWay.Schema.Withdrawal{}) :: %SearchResult{}
@@ -55,7 +54,7 @@ defimpl NewWay.Protocol.SearchResult, for: NewWay.Schema.Withdrawal do
     %SearchResult{
       id: withdrawal.withdrawal_id,
       ns: :withdrawals,
-      data: Utils.schema_to_map(withdrawal)
+      data: withdrawal
     }
   end
 end

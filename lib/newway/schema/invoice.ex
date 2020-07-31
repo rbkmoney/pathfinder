@@ -49,7 +49,6 @@ defmodule NewWay.Schema.Invoice do
 end
 
 defimpl NewWay.Protocol.SearchResult, for: NewWay.Schema.Invoice do
-  alias NewWay.Protocol.SearchResult.Utils
   alias NewWay.SearchResult
 
   @spec encode(%NewWay.Schema.Invoice{}) :: %SearchResult{}
@@ -57,7 +56,7 @@ defimpl NewWay.Protocol.SearchResult, for: NewWay.Schema.Invoice do
     %SearchResult{
       id: invoice.invoice_id,
       ns: :invoices,
-      data: Utils.schema_to_map(invoice)
+      data: invoice
     }
   end
 end

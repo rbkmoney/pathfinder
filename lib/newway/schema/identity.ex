@@ -32,7 +32,6 @@ defmodule NewWay.Schema.Identity do
 end
 
 defimpl NewWay.Protocol.SearchResult, for: NewWay.Schema.Identity do
-  alias NewWay.Protocol.SearchResult.Utils
   alias NewWay.SearchResult
 
   @spec encode(%NewWay.Schema.Identity{}) :: %SearchResult{}
@@ -40,7 +39,7 @@ defimpl NewWay.Protocol.SearchResult, for: NewWay.Schema.Identity do
     %SearchResult{
       id: identity.identity_id,
       ns: :identities,
-      data: Utils.schema_to_map(identity)
+      data: identity
     }
   end
 end

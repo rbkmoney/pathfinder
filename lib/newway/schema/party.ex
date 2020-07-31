@@ -60,7 +60,6 @@ defmodule NewWay.Schema.Party do
 end
 
 defimpl NewWay.Protocol.SearchResult, for: NewWay.Schema.Party do
-  alias NewWay.Protocol.SearchResult.Utils
   alias NewWay.SearchResult
 
   @spec encode(%NewWay.Schema.Party{}) :: %SearchResult{}
@@ -68,7 +67,7 @@ defimpl NewWay.Protocol.SearchResult, for: NewWay.Schema.Party do
     %SearchResult{
       id: party.party_id,
       ns: :parties,
-      data: Utils.schema_to_map(party)
+      data: party
     }
   end
 end

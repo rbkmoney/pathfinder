@@ -123,7 +123,6 @@ defmodule NewWay.Schema.Payment do
 end
 
 defimpl NewWay.Protocol.SearchResult, for: NewWay.Schema.Payment do
-  alias NewWay.Protocol.SearchResult.Utils
   alias NewWay.SearchResult
 
   @spec encode(%NewWay.Schema.Payment{}) :: %SearchResult{}
@@ -131,7 +130,7 @@ defimpl NewWay.Protocol.SearchResult, for: NewWay.Schema.Payment do
     %SearchResult{
       id: payment.payment_id,
       ns: :payments,
-      data: Utils.schema_to_map(payment)
+      data: payment
     }
   end
 end

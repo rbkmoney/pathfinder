@@ -41,7 +41,6 @@ defmodule NewWay.Schema.Adjustment do
 end
 
 defimpl NewWay.Protocol.SearchResult, for: NewWay.Schema.Adjustment do
-  alias NewWay.Protocol.SearchResult.Utils
   alias NewWay.SearchResult
 
   @spec encode(%NewWay.Schema.Adjustment{}) :: %SearchResult{}
@@ -49,7 +48,7 @@ defimpl NewWay.Protocol.SearchResult, for: NewWay.Schema.Adjustment do
     %SearchResult{
       id: adjustment.adjustment_id,
       ns: :adjustments,
-      data: Utils.schema_to_map(adjustment)
+      data: adjustment
     }
   end
 end
