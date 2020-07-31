@@ -161,7 +161,7 @@ defmodule PathfinderTest do
       ]
     )
 
-    filter0= pf_Filter(limit: 1)
+    filter0 = pf_Filter(limit: 1)
     {:ok, [
       pf_Result(ns: :invoices, data: %{"id" => "1"}),
     ]} = Client.lookup([lookup_request, filter0], ctx[:client])
