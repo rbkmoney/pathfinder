@@ -28,10 +28,10 @@ defmodule Pathfinder.Thrift.Codec do
     offset: offset,
     is_current: is_current
   )) do
-    filter0 = %NewWay.Filter{}
-    filter1 = maybe_put(filter0, :limit, limit)
-    filter2 = maybe_put(filter1, :offset, offset)
-    maybe_put(filter2, :is_current, is_current)
+    %NewWay.Filter{}
+    |> maybe_put(:limit, limit)
+    |> maybe_put(:offset, offset)
+    |> maybe_put(:is_current, is_current)
   end
 
   # Utilities
