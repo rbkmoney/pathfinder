@@ -30,13 +30,7 @@ defmodule NewWay do
     :refunds |
     :payments
 
-  @type search_result :: %SearchResult{}
-  @type filter :: %Filter{}
-  @type search_id :: binary
-
-  # Internal types
-
-  @typep schema_type ::
+  @type schema_type ::
     %Destination{} |
     %Identity{} |
     %Invoice{} |
@@ -49,6 +43,10 @@ defmodule NewWay do
     %Refund{} |
     %Payment{}
 
+  @type search_id :: binary
+
+  @type search_result :: SearchResult.t
+  @type filter :: Filter.t
 
   # API
 

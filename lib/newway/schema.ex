@@ -25,7 +25,7 @@ defmodule NewWay.Schema do
         alias NewWay.Filter
         require Ecto.Query
         q0 = case filter.is_current do
-          nil ->
+          :ignore ->
             Ecto.Query.where(__MODULE__, [a], a.unquote(opts[:search_field]) in ^ids)
           current ->
             Ecto.Query.where(__MODULE__, [a], a.unquote(opts[:search_field]) in ^ids and a.current == ^current)

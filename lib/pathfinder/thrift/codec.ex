@@ -29,21 +29,17 @@ defmodule Pathfinder.Thrift.Codec do
     is_current: is_current
   )) do
     filter0 = %NewWay.Filter{}
-    filter1 = case limit != :undefined do
-      true -> %{filter0 | limit: limit}
-      false -> filter0
-    end
-    filter2 = case offset != :undefined do
-      true -> %{filter1 | offset: offset}
-      false -> filter1
-    end
-    case is_current != :undefined do
-      true -> %{filter2 | is_current: is_current}
-      false -> filter2
-    end
+    filter1 = maybe_put(filter0, :limit, limit)
+    filter2 = maybe_put(filter1, :offset, offset)
+    maybe_put(filter2, :is_current, is_current)
   end
 
   # Utilities
+
+  defp maybe_put(struct, _key, :undefined),
+    do: struct
+  defp maybe_put(struct, key, value),
+    do: Map.put(struct, key, value)
 
   defp encode_nw_schema(%struct_name{} = struct) do
     Map.from_struct(struct)

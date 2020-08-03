@@ -7,6 +7,11 @@ OUT_FILE="${1}"
 
 OUT_PATH="$ROOT_DIR/$OUT_FILE"
 
+if test -f "$OUT_PATH"; then
+    echo "$OUT_PATH already exists."
+    exit 127
+fi
+
 git clone https://github.com/rbkmoney/newway.git tmp/newway
 cd tmp/newway/src/main/resources/db/migration
 
