@@ -44,7 +44,7 @@ defmodule NewWay do
     %Payment{}
 
   @type search_id :: binary
-  @type created_at :: %DateTime{}
+  @type created_at :: DateTime.t
 
   @type search_result :: SearchResult.t
   @type filter :: Filter.t

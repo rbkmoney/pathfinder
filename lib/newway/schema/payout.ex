@@ -3,6 +3,8 @@ defmodule NewWay.Schema.Payout do
   use NewWay.Schema, search_field: :payout_id
   require NewWay.Macro.EnumType, as: EnumType
 
+  @type t :: Ecto.Schema.t
+
   EnumType.def_enum(PayoutStatus, [
     :unpaid,
     :paid,
@@ -107,7 +109,7 @@ end
 defimpl NewWay.Protocol.SearchResult, for: NewWay.Schema.Payout do
   alias NewWay.SearchResult
 
-  @spec encode(%NewWay.Schema.Payout{}) :: %SearchResult{}
+  @spec encode(NewWay.Schema.Payout.t) :: SearchResult.t
   def encode(payout) do
     %SearchResult{
       id: payout.payout_id,

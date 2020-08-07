@@ -1,8 +1,9 @@
 defmodule NewWay.Schema.Party do
   use Ecto.Schema
   use NewWay.Schema, search_field: :party_id
-
   require NewWay.Macro.EnumType, as: EnumType
+
+  @type t :: Ecto.Schema.t
 
   EnumType.def_enum(PartyBlocking, [
     :unblocked,
@@ -62,7 +63,7 @@ end
 defimpl NewWay.Protocol.SearchResult, for: NewWay.Schema.Party do
   alias NewWay.SearchResult
 
-  @spec encode(%NewWay.Schema.Party{}) :: %SearchResult{}
+  @spec encode(NewWay.Schema.Party.t) :: SearchResult.t
   def encode(party) do
     %SearchResult{
       id: party.party_id,

@@ -3,6 +3,8 @@ defmodule NewWay.Schema.Refund do
   use NewWay.Schema, search_field: :invoice_id # Refunds do not have global id's
   require NewWay.Macro.EnumType, as: EnumType
 
+  @type t :: Ecto.Schema.t
+
   EnumType.def_enum(RefundStatus, [
     :pending,
     :succeeded,
@@ -48,7 +50,7 @@ end
 defimpl NewWay.Protocol.SearchResult, for: NewWay.Schema.Refund do
   alias NewWay.SearchResult
 
-  @spec encode(%NewWay.Schema.Refund{}) :: %SearchResult{}
+  @spec encode(NewWay.Schema.Refund.t) :: SearchResult.t
   def encode(refund) do
     %SearchResult{
       id: refund.refund_id,
