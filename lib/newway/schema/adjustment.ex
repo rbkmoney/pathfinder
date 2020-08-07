@@ -48,7 +48,8 @@ defimpl NewWay.Protocol.SearchResult, for: NewWay.Schema.Adjustment do
     %SearchResult{
       id: adjustment.adjustment_id,
       ns: :adjustments,
-      data: adjustment
+      data: adjustment,
+      created_at: adjustment.wtime
     }
   end
 end

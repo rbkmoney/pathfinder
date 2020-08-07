@@ -69,7 +69,8 @@ defimpl NewWay.Protocol.SearchResult, for: NewWay.Schema.Shop do
     %SearchResult{
       id: shop.shop_id,
       ns: :shops,
-      data: shop
+      data: shop,
+      created_at: shop.wtime
     }
   end
 end

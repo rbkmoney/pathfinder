@@ -62,7 +62,8 @@ defimpl NewWay.Protocol.SearchResult, for: NewWay.Schema.Destination do
     %SearchResult{
       id: destination.destination_id,
       ns: :destinations,
-      data: destination
+      data: destination,
+      created_at: destination.wtime
     }
   end
 end

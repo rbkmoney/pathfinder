@@ -53,7 +53,8 @@ defimpl NewWay.Protocol.SearchResult, for: NewWay.Schema.Refund do
     %SearchResult{
       id: refund.refund_id,
       ns: :refunds,
-      data: refund
+      data: refund,
+      created_at: refund.wtime
     }
   end
 end

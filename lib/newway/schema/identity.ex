@@ -39,7 +39,8 @@ defimpl NewWay.Protocol.SearchResult, for: NewWay.Schema.Identity do
     %SearchResult{
       id: identity.identity_id,
       ns: :identities,
-      data: identity
+      data: identity,
+      created_at: identity.wtime
     }
   end
 end

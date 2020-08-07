@@ -39,7 +39,8 @@ defimpl NewWay.Protocol.SearchResult, for: NewWay.Schema.Wallet do
     %SearchResult{
       id: wallet.wallet_id,
       ns: :wallets,
-      data: wallet
+      data: wallet,
+      created_at: wallet.wtime
     }
   end
 end

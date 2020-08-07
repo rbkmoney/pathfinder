@@ -54,7 +54,8 @@ defimpl NewWay.Protocol.SearchResult, for: NewWay.Schema.Withdrawal do
     %SearchResult{
       id: withdrawal.withdrawal_id,
       ns: :withdrawals,
-      data: withdrawal
+      data: withdrawal,
+      created_at: withdrawal.wtime
     }
   end
 end

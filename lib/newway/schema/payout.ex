@@ -112,7 +112,8 @@ defimpl NewWay.Protocol.SearchResult, for: NewWay.Schema.Payout do
     %SearchResult{
       id: payout.payout_id,
       ns: :payouts,
-      data: payout
+      data: payout,
+      created_at: payout.wtime
     }
   end
 end

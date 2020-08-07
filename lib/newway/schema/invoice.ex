@@ -56,7 +56,8 @@ defimpl NewWay.Protocol.SearchResult, for: NewWay.Schema.Invoice do
     %SearchResult{
       id: invoice.invoice_id,
       ns: :invoices,
-      data: invoice
+      data: invoice,
+      created_at: invoice.wtime
     }
   end
 end

@@ -44,6 +44,7 @@ defmodule NewWay do
     %Payment{}
 
   @type search_id :: binary
+  @type created_at :: %DateTime{}
 
   @type search_result :: SearchResult.t
   @type filter :: Filter.t
@@ -95,8 +96,12 @@ defmodule NewWay do
     [schema_type]
   defp query_assoc_namespace(schema, namespace, filter) do
     require Ecto.Query
-    Ecto.assoc(schema, namespace)
-    |> Ecto.Query.order_by(desc: :id)
+    q0 = Ecto.assoc(schema, namespace)
+    q1 = case filter.is_current do
+      :ignore -> q0
+      current -> Ecto.Query.where(q0, [a], a.current == ^current)
+    end
+    q1
     |> Ecto.Query.limit(^filter.limit)
     |> Ecto.Query.offset(^filter.offset)
     |> NewWay.Repo.all()
