@@ -22,7 +22,6 @@ defmodule NewWay.Schema do
 
       @spec search([NewWay.entity_id], NewWay.filter) :: [%__MODULE__{}]
       def search(ids, filter) do
-        alias NewWay.Filter
         require Ecto.Query
         q0 = case filter.is_current do
           :ignore ->
@@ -32,10 +31,7 @@ defmodule NewWay.Schema do
         end
 
         q0
-        |> Ecto.Query.order_by(desc: :id)
-        |> Ecto.Query.limit(^filter.limit)
-        |> Ecto.Query.offset(^filter.offset)
-        |> NewWay.Repo.all()
+        |> NewWay.Repo.filtered_all(filter)
       end
     end
   end

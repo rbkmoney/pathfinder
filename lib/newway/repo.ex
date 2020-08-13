@@ -5,4 +5,14 @@ defmodule NewWay.Repo do
     otp_app: :pathfinder,
     adapter: Ecto.Adapters.Postgres,
     read_only: @read_only
+
+  @spec filtered_all(Ecto.Query.t, NewWay.filter) :: [Ecto.Schema.t]
+  def filtered_all(query, filter) do
+    require Ecto.Query
+    query
+    |> Ecto.Query.order_by(desc: :id)
+    |> Ecto.Query.limit(^filter.limit)
+    |> Ecto.Query.offset(^filter.offset)
+    |> all()
+  end
 end
