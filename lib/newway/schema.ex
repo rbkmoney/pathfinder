@@ -32,6 +32,7 @@ defmodule NewWay.Schema do
         end
 
         q0
+        |> Ecto.Query.order_by(desc: :id)
         |> Ecto.Query.limit(^filter.limit)
         |> Ecto.Query.offset(^filter.offset)
         |> NewWay.Repo.all()
