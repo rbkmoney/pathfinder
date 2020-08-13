@@ -100,7 +100,7 @@ defmodule NewWay do
   defp query_assoc_namespace(schema, namespace, filter) do
     Ecto.assoc(schema, namespace)
     |> maybe_filter_current(filter.is_current)
-    |> NewWay.Repo.filtered_all(filter)
+    |> NewWay.Repo.get_filtered_all(filter)
   end
 
   defp maybe_filter_current(query, :ignore),

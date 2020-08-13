@@ -6,8 +6,8 @@ defmodule NewWay.Repo do
     adapter: Ecto.Adapters.Postgres,
     read_only: @read_only
 
-  @spec filtered_all(Ecto.Query.t, NewWay.filter) :: [Ecto.Schema.t]
-  def filtered_all(query, filter) do
+  @spec get_filtered_all(Ecto.Query.t, NewWay.filter) :: [Ecto.Schema.t]
+  def get_filtered_all(query, filter) do
     require Ecto.Query
     query
     |> Ecto.Query.order_by(desc: :id)

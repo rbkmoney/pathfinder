@@ -29,9 +29,7 @@ defmodule NewWay.Schema do
           current ->
             Ecto.Query.where(__MODULE__, [a], a.unquote(opts[:search_field]) in ^ids and a.current == ^current)
         end
-
-        q0
-        |> NewWay.Repo.filtered_all(filter)
+        NewWay.Repo.get_filtered_all(q0, filter)
       end
     end
   end
