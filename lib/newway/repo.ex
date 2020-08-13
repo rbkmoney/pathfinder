@@ -6,11 +6,17 @@ defmodule NewWay.Repo do
     adapter: Ecto.Adapters.Postgres,
     read_only: @read_only
 
+  @typep order_by :: keyword(atom())
+
   @spec get_filtered_all(Ecto.Query.t, NewWay.filter) :: [Ecto.Schema.t]
-  def get_filtered_all(query, filter) do
+  def get_filtered_all(query, filter),
+    do: get_filtered_all(query, filter, desc: :id)
+
+  @spec get_filtered_all(Ecto.Query.t, NewWay.filter, order_by) :: [Ecto.Schema.t]
+  def get_filtered_all(query, filter, order_by) do
     require Ecto.Query
     query
-    |> Ecto.Query.order_by(desc: :id)
+    |> Ecto.Query.order_by(^order_by)
     |> Ecto.Query.limit(^filter.limit)
     |> Ecto.Query.offset(^filter.offset)
     |> all()
