@@ -42,7 +42,7 @@ defmodule Pathfinder.MixProject do
           pathfinder: :permanent
         ],
         include_executables_for: [:unix],
-        include_erts: true
+        include_erts: false
       ]
     ]
   end
