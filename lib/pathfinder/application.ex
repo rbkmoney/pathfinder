@@ -19,7 +19,7 @@ defmodule Pathfinder.Application do
     children = [
       NewWay.Repo,
       Woody.Server,
-      webserver_child_spec(),
+      healthcheck_child_spec(),
     ]
 
     opts = [
@@ -30,7 +30,7 @@ defmodule Pathfinder.Application do
     Supervisor.start_link(children, opts)
   end
 
-  def webserver_child_spec do
+  def healthcheck_child_spec do
     {:ok, ip} = :inet.parse_address(:genlib_app.env(@app, :ip, @default_ip))
     port = :genlib_app.env(@app, :port, @default_port)
     acceptors_pool = :genlib_app.env(@app, :acceptors_poolsize, @default_acceptors_poolsize)
@@ -51,8 +51,7 @@ defmodule Pathfinder.Application do
     protocol = :cowboy_clear
     cowboy_opts = %{
       env: %{
-        dispatch: :cowboy_router.compile(routes),
-        cors_policy: Pathfinder.CorsPolicy
+        dispatch: :cowboy_router.compile(routes)
       },
       middlewares: [
         :cowboy_router,
