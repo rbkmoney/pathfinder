@@ -28,12 +28,9 @@ defmodule Pathfinder.MixProject do
       {:scoper, git: "https://github.com/rbkmoney/scoper.git", branch: :master},
       {:erl_health, git: "https://github.com/rbkmoney/erlang-health.git", branch: :master},
       {:how_are_you, git: "https://github.com/rbkmoney/how_are_you.git", branch: :master},
-      {:cowboy_draining_server,
-       git: "https://github.com/rbkmoney/cowboy_draining_server.git", branch: :master},
-      {:logger_logstash_formatter,
-       git: "https://github.com/rbkmoney/logger_logstash_formatter.git", branch: :master},
-      {:pathfinder_proto,
-       git: "https://github.com/rbkmoney/pathfinder_proto.git", branch: :master},
+      {:cowboy_draining_server, git: "https://github.com/rbkmoney/cowboy_draining_server.git", branch: :master},
+      {:logger_logstash_formatter, git: "https://github.com/rbkmoney/logger_logstash_formatter.git", branch: :master},
+      {:pathfinder_proto, git: "https://github.com/rbkmoney/pathfinder_proto.git", branch: :master},
       # Only dev
       {:dialyxir, "~> 1.1.0", only: [:dev], runtime: false}
     ]
