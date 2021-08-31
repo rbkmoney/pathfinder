@@ -16,7 +16,7 @@ config :pathfinder, :how_are_you,
     ]
 
 config :pathfinder, :health_check, %{
-    disk:    {erl_health, disk,      ['/',  99]},
-    memory:  {erl_health, cg_memory, [99]},
-    service: {erl_health, service,   ["pathfinder"]}
+    disk:    {:erl_health, :disk,      ['/',  99]},
+    memory:  {:erl_health, :cg_memory, [99]},
+    service: {:erl_health, :service,   ["pathfinder"]}
   }
